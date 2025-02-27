@@ -66,7 +66,7 @@ contract ERC20 {
     require(_spender != address(0), 'ERC20: approve to the zero address');
     require(_balances[msg.sender] >= _value, 'Approve amount exceeds balance');
 
-    _allowances[_spender][msg.sender] = _value;
+    _allowances[msg.sender][_spender] = _value;
 
     emit Approval(msg.sender, _spender, _value);
     return true;
@@ -75,6 +75,6 @@ contract ERC20 {
   function allowance(address _owner, address _spender) public view returns (uint256) {
     require(_owner != address(0), 'Owner should not be the zero address');
     require(_spender != address(0), 'Spender should not be the zero address');
-    return _allowances[_spender][_owner];
+    return _allowances[_owner][_spender];
   }
 }
